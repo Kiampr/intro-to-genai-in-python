@@ -1,0 +1,43 @@
+[project]
+name = "python-genai-intro"
+version = "0.1.0"
+description = "A step-by-step tutorial to get familiar with Gen-AI usage from Python using LangGraph"
+authors = [
+    {name = "Matei Tene",email = "matei.tene@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0.0"
+
+[tool.poetry]
+packages = [
+  { include = "user_interface", from = "src" },
+  { include = "chatbot", from = "src" }
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+genai-chat = "user_interface.__main__:main"
+step-0 = "chatbot.lessons.step0_intro.__main__:main"
+step-1 = "chatbot.lessons.step1_prompting.__main__:main"
+step-1-solution = "chatbot.lessons.step1_prompting_solution.__main__:main"
+step-2 = "chatbot.lessons.step2_system_prompt.__main__:main"
+step-2-solution = "chatbot.lessons.step2_system_prompt_solution.__main__:main"
+step-3 = "chatbot.lessons.step3_conversation_history.__main__:main"
+step-3-solution = "chatbot.lessons.step3_conversation_history_solution.__main__:main"
+step-4 = "chatbot.lessons.step4_structured_outputs.__main__:main"
+step-4-solution = "chatbot.lessons.step4_structured_outputs_solution.__main__:main"
+step-5 = "chatbot.lessons.step5_tool_calling.__main__:main"
+step-5-solution = "chatbot.lessons.step5_tool_calling_solution.__main__:main"
+step-6 = "chatbot.lessons.step6_custom_agent.__main__:main"
+step-6-solution = "chatbot.lessons.step6_custom_agent_solution.__main__:main"
+
+[tool.poetry.dependencies]
+streamlit = "^1.50.0"
+streamlit-chat = "^0.1.1"
+langgraph = "^0.6.8"
+langchain-openai = "^0.3.35"
+pyyaml = "^6.0.3"
+rich = "^14.1.0"

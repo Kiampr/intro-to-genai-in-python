@@ -1,0 +1,33 @@
+## Predefined configuration sets - to be referenced below
+
+# configuration for a local LLM, launched using Ollama
+local_llm: &local_llm_settings
+  type: local
+  model: 'llama3.1:8b'
+
+# configuration for a remote LLM, hosted in the cloud
+# needs to be filled in with the specifics for your project
+# the API key should be stored separately in the OPENAI_API_KEY env var
+remote_llm: &remote_llm_settings
+  type: remote
+  model: "gpt-4o"
+  api_version: "2024-10-21"
+  endpoint: "https://<your-resource-name>.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-10-21"
+  extra_headers:
+
+## App configuration settings
+
+# minimum level for log messages to be displayed
+# choose between:
+# - debug
+# - info
+# - warning
+# - error
+# - fatal
+log_level: info
+
+# choose one of the predefined LLM configs from above:
+# - local_llm_settings  - a locally-hosted GenAI service
+# - remote_llm_settings - a cloud-hosted GenAI service
+llm_config:
+  <<: *local_llm_settings
