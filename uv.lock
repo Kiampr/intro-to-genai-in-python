@@ -841,6 +841,7 @@ dependencies = [
     { name = "rich" },
     { name = "streamlit" },
     { name = "streamlit-chat" },
+    { name = "tzdata" },
 ]
 
 [package.metadata]
@@ -852,6 +853,7 @@ requires-dist = [
     { name = "rich", specifier = ">=14.1.0,<15" },
     { name = "streamlit", specifier = ">=1.50.0,<2" },
     { name = "streamlit-chat", specifier = ">=0.1.1,<0.2" },
+    { name = "tzdata", specifier = ">=2025.2" },
 ]
 
 [[package]]
