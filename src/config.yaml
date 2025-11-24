@@ -1,19 +1,39 @@
 ## Predefined configuration sets - to be referenced below
 
-# configuration for a local LLM, launched using Ollama
+# remote authentication via API key stored in an env var
+api_key_authentication: &api_key_authentication_settings
+  type: api_key
+  api_key_env_var: OPENAI_API_KEY
+
+# configuration for a local LLM service, launched using Ollama
 local_llm: &local_llm_settings
   type: local
   model: 'llama3.1:8b'
 
-# configuration for a remote LLM, hosted in the cloud
-# needs to be filled in with the specifics for your project
-# the API key should be stored separately in the OPENAI_API_KEY env var
+# configuration for a remote LLM service, hosted in the cloud
 remote_llm: &remote_llm_settings
   type: remote
   model: "gpt-4o"
   api_version: "2024-10-21"
-  endpoint: "https://<your-resource-name>.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2024-10-21"
+  endpoint: "https://<your-resource-name>.openai.azure.com/"
   extra_headers:
+  authentication:
+    <<: *api_key_authentication_settings
+
+# configuration for a local embeddings service, launched using Ollama
+local_embeddings: &local_embeddings_settings
+  type: local
+  model: "nomic-embed-text"
+
+# configuration for a remote embeddings service, hosted in the cloud
+remote_embeddings: &remote_embeddings_settings
+  type: remote
+  model: "text-embedding-3-small"
+  api_version: "2024-10-21"
+  endpoint: "https://<your-resource-name>.openai.azure.com/"
+  extra_headers:
+  authentication:
+    <<: *api_key_authentication_settings
 
 ## App configuration settings
 
@@ -26,8 +46,14 @@ remote_llm: &remote_llm_settings
 # - fatal
 log_level: info
 
-# choose one of the predefined LLM configs from above:
-# - local_llm_settings  - a locally-hosted GenAI service
-# - remote_llm_settings - a cloud-hosted GenAI service
+# choose one of the predefined LLM service configs from above:
+# - local_llm_settings  - a locally-hosted service
+# - remote_llm_settings - a cloud-hosted service
 llm_config:
   <<: *local_llm_settings
+
+# choose one of the predefined embeddings service configs from above:
+# - local_embeddings_settings  - a locally-hosted service
+# - remote_embeddings_settings - a cloud-hosted service
+embeddings_config:
+  <<: *local_embeddings_settings

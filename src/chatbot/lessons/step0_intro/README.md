@@ -53,7 +53,7 @@ This decision depends on the level of complexity in your application. Some guide
 
 These are the most powerful models, typically hosted on cloud infrastructure. Authentication is needed to access them (API key, tokens, etc.) and there are associated billing and legal / data IP implications.
 
-If you decide to use them, first obtain the necessary credentials, then update [`config.yaml`](/src/config.yaml) with the details and store the API key in the `OPENAI_API_KEY` environment variable before starting the app.
+If you decide to use them, first follow due process to obtain credentials, then update [`config.yaml`](/src/config.yaml) with the necessary details and store any secret values in user environment variables before starting the app.
 
 ### Local LLMs
 

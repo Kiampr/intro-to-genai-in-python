@@ -1,23 +1,23 @@
 import logging
 import os
-from langchain_openai import AzureChatOpenAI
+from langchain_openai.embeddings import AzureOpenAIEmbeddings
 from pydantic import SecretStr
 from chatbot.config import config
 
 logger = logging.getLogger(__name__)
 
 
-class RemoteLLM(AzureChatOpenAI):
-    """Represents a cloud-hosted OpenAI LLM service
+class RemoteEmbeddings(AzureOpenAIEmbeddings):
+    """Represents a cloud-hosted OpenAI embeddings service
     Usage:
-         llm_service = RemoteLLM()
-         messages = [user_message(content="Hi")]
-         answer = llm_service.invoke(messages)
+         embeddings_service = RemoteEmbeddings()
+         text = "Hi"
+         embeddings = embeddings_service.embed_query(text)
     """
 
     def __init__(self, **kwargs):
         # fetch service configuration from the config file
-        service_config = config.get_llm_config()
+        service_config = config.get_embeddings_config()
 
         # retrieve API key from the environment variable
         auth_config = service_config["authentication"]
@@ -30,6 +30,5 @@ class RemoteLLM(AzureChatOpenAI):
             azure_deployment=service_config["model"],
             azure_endpoint=service_config["endpoint"],
             default_headers=service_config["extra_headers"],
-            include_response_headers=True,
             **kwargs,
         )

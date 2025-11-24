@@ -14,7 +14,7 @@ For local LLMs, Ollama understands the OpenAI API and is able to translate reque
 
 Local LLMs require no authentication credentials. This explains the dummy value in the constructor of [`LocalLLM`](/src/chatbot/services/local_llm.py). It is there just because a non-empty string is expected by LangChain's `ChatOpenAI`, but the value is of no consequence.
 
-For [`RemoteLLM`](/src/chatbot/services/remote_llm.py), authentication is done via a fixed secret key, to be configured via the `OPENAI_API_KEY` environment variable. Support for more advanced authentication mechanisms, such as token providers, is out of scope as there is a wide range of possibilities, depending on corporate or application policies.
+For [`RemoteLLM`](/src/chatbot/services/remote_llm.py), authentication is done via a fixed secret key, to be configured via a user environment variable. Support for more advanced authentication mechanisms, such as token services, is out of scope as there is a wide range of possibilities, depending on corporate or application policies.
 
 ## Further reading
 

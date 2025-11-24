@@ -6,7 +6,7 @@ from chatbot.utils.logging import configure_logging
 from chatbot.start_chat import (
     start_chat_services,
     stop_chat_services,
-    start_on_this_process,
+    run_on_this_process,
 )
 
 logger = logging.getLogger(__name__)
@@ -19,11 +19,11 @@ def start_streamlit(argv: List[str] | None = None) -> int:
         "run",
         str(streamlit_app_path),
         "--server.address",
-        "localhost",
+        "127.0.0.1",
     ]
     if argv:
         streamlit_cmd += ["--"] + argv
-    return start_on_this_process(name="streamlit", cmd=streamlit_cmd)
+    return run_on_this_process(cmd=streamlit_cmd)
 
 
 def main() -> int:

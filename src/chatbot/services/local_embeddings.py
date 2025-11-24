@@ -1,19 +1,19 @@
-from langchain_openai import ChatOpenAI
+from langchain_openai.embeddings import OpenAIEmbeddings
 from pydantic import SecretStr
 from chatbot.config import config
 
 
-class LocalLLM(ChatOpenAI):
-    """Represents a locally-hosted Ollama LLM service
+class LocalEmbeddings(OpenAIEmbeddings):
+    """Represents a locally-hosted Ollama embeddings service
     Usage:
-         llm_service = LocalLLM()
-         messages = [user_message(content="Hi")]
-         answer = llm_service.invoke(messages)
+         embeddings_service = LocalEmbeddings()
+         text = "Hi"
+         embeddings = embeddings_service.embed_query(text)
     """
 
     def __init__(self, **kwargs):
         # fetch service configuration from the config file
-        service_config = config.get_llm_config()
+        service_config = config.get_embeddings_config()
 
         # establish connection to service
         super().__init__(

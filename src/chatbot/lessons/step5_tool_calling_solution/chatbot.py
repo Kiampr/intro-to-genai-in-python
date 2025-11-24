@@ -49,7 +49,8 @@ def convert_currency(
 ) -> float:
     """Converts money between currencies at today's rate."""
     url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency.value}&to={to_currency.value}"
-    response = requests.get(url)
+    response = requests.get(url, timeout=60)
+    response.raise_for_status()
     data = response.json()
     answer = data["rates"][to_currency.value]
     return answer
