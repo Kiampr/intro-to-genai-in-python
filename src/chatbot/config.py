@@ -4,6 +4,10 @@ from enum import StrEnum
 from typing import Any, Dict
 
 
+class AuthenticationType(StrEnum):
+    API_KEY = "api_key"
+
+
 class ServiceType(StrEnum):
     LOCAL = "local"
     REMOTE = "remote"
