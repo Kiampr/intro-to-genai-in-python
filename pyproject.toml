@@ -16,6 +16,12 @@ dependencies = [
     "tzdata~=2025.2",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "ruff~=0.14.7",
+    "pyright~=1.1.407",
+]
+
 [project.scripts]
 genai-chat = "user_interface.__main__:main"
 step-0 = "chatbot.lessons.step0_intro.__main__:main"
