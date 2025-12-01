@@ -1,4 +1,4 @@
-# Lesson 3: Tracking conversation history (solution)
+# Solution 3: Tracking conversation history
 
 The [solution](chatbot.py) to the exercise equips the chatbot with a [`ChatHistory`](/src/chatbot/chat_history.py) object.
 
@@ -32,5 +32,5 @@ The addition of chat history tracking makes the chatbot stateful, an important s
 
 After a few exchanges, ask the chatbot to translate its first answer to another language. If you've also implemented the pruning of the chat history to the last 5 exchanges, you will observe that the chatbot will translate its 2nd answer in a conversation with 6 exchanges. This will surprise the user, but is a rare occurrence in most practical scenarios. The gains in robustness and avoiding LLM errors due to exceeding the maximum LLM context size are likely worth it. The optimal length of the sliding window of historical messages is application specific.
 
-🏠 [Overview](/README.md) | ◀️ [Back to lesson](/src/chatbot/lessons/step3_conversation_history/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step4_structured_outputs/README.md)
+🏠 [Overview](/README.md) | ◀️ [Back to exercise](/src/chatbot/lessons/exercises/e03_conversation_history/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e04_structured_outputs/README.md)
 ---|---|---

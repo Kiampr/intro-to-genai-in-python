@@ -1,8 +1,8 @@
-# Lesson 0: Introduction
+# Exercise 0: Introduction
 
 This is a basic setup to confirm that the UI and framework code are working as expected and get you familiar with the overall structure of the code.
 
-The [chatbot logic](chatbot.py) for this lesson is just a dummy where the question is repeated back to the user after some waiting. The sleeps may seem pointless - they are there simply to showcase the status update notifications.
+The [chatbot logic](chatbot.py) for this exercise is just a dummy where the question is repeated back to the user after some waiting. The sleeps may seem pointless - they are there simply to showcase the status update notifications.
 
 ## User interface
 
@@ -10,16 +10,16 @@ The graphical user interface is defined using [`streamlit`](https://docs.streaml
 
 ![Chat UI](/images/ui.png)
 
-The chatbot defined in each lesson or solution can also be tested at the command-line, by issuing the following launch commands:
+The chatbot defined in each exercise or solution can also be tested at the command-line, by issuing the following launch commands:
 
 ```powershell
-uv run step-5
+uv run exercise-5
 ```
 
 or
 
 ```powershell
-uv run step-5-solution
+uv run solution-5
 ```
 
 This allows one to attach a debugger and step through the code or capture exceptions.
@@ -93,5 +93,5 @@ Notes:
 
 To complete all tutorials, native support for both structured outputs and tool calling is needed. **LLaMA 3.1 8B** meets these criteria and is able to run at decently low latency on a consumer-grade laptop with an NVIDIA GPU. Opt for **GPT-OSS 20B MoE**, if your machine has better-than average hardware.
 
-🏠 [Overview](/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step1_prompting/README.md)
+🏠 [Overview](/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e01_prompting/README.md)
 ---|---

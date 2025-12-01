@@ -1,4 +1,4 @@
-# Lesson 6: Custom agent (solution)
+# Solution 6: Custom agent
 
 One possible [solution](chatbot.py) to the [`author`](author.py)-[`reviewer`](reviewer.py) task wires them in a loop, as shown in the diagram
 
@@ -36,5 +36,5 @@ This decision can be taken by the [`reviewer`](reviewer.py), by changing the typ
 
 The implementation and further exploration is left as an exercise for the reader.
 
-🏠 [Overview](/README.md) | ◀️ [Back to lesson](/src/chatbot/lessons/step6_custom_agent/README.md)
+🏠 [Overview](/README.md) | ◀️ [Back to exercise](/src/chatbot/lessons/exercises/e06_custom_agent/README.md)
 ---|---

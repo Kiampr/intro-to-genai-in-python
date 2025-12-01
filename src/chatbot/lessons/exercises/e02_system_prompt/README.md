@@ -1,6 +1,6 @@
-# Lesson 2: System prompt
+# Exercise 2: System prompt
 
-In this lesson, we turn attention to the system prompt. It contains instructions for the LLM, dictating its behavior when tackling user queries. These do not come from the user, they are set by the developers to fit the scope and goals of the application.
+In this exercise, we turn attention to the system prompt. It contains instructions for the LLM, dictating its behavior when tackling user queries. These do not come from the user, they are set by the developers to fit the scope and goals of the application.
 
 Update the [chatbot logic](chatbot.py) with a system prompt. The instructions are up to you. As an example, try to make it respond like a friendly pirate.
 
@@ -28,5 +28,5 @@ When prompting LLMs the order information is provided matters, as the "attention
 
 Check out this [material](https://learnprompting.org/docs/introduction) on prompt engineering.
 
-🏠 [Overview](/README.md) | ◀️ [Previous lesson](/src/chatbot/lessons/step1_prompting/README.md) | ✅ [Solution](/src/chatbot/lessons/step2_system_prompt_solution/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step3_conversation_history/README.md)
+🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e01_prompting/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s02_system_prompt/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e03_conversation_history/README.md)
 ---|---|---|---

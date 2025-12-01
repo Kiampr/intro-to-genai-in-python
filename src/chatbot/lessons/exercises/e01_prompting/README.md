@@ -1,4 +1,4 @@
-# Lesson 1: Text prompting
+# Exercise 1: Text prompting
 
 In this exercise, you will make the [chatbot logic](chatbot.py) use the LLM to answer user queries.
 
@@ -32,5 +32,5 @@ For more info see this [article](https://towardsai.net/p/machine-learning/unders
 
 Also study the ['ChatOpenAI`](https://python.langchain.com/api_reference/openai/chat_models/langchain_openai.chat_models.base.ChatOpenAI.html#langchain_openai.chat_models.base.ChatOpenAI) class in LangChain to understand the different ways LLMs can be configured and called.
 
-🏠 [Overview](/README.md) | ◀️ [Previous lesson](/src/chatbot/lessons/step0_intro/README.md) | ✅ [Solution](/src/chatbot/lessons/step1_prompting_solution/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step2_system_prompt/README.md)
+🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e00_intro/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s01_prompting/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e02_system_prompt/README.md)
 ---|---|---|---

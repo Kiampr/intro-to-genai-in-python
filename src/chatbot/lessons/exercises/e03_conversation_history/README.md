@@ -1,6 +1,6 @@
-# Lesson 3: Tracking conversation history
+# Exercise 3: Tracking conversation history
 
-In this lesson, you will make the [chatbot logic](chatbot.py) able to track the user questions and corresponding answers between multiple calls.
+In this exercise, you will make the [chatbot logic](chatbot.py) able to track the user questions and corresponding answers between multiple calls.
 
 ## Motivation
 
@@ -30,5 +30,5 @@ This might seem like a good idea initially, but as applications evolve, it will 
 
 Inspect the [`ChatHistory`](/src/chatbot/chat_history.py) class and you can also take inspiration from how it is used in the [UI](/src/user_interface/app.py).
 
-🏠 [Overview](/README.md) | ◀️ [Previous lesson](/src/chatbot/lessons/step2_system_prompt/README.md) | ✅ [Solution](/src/chatbot/lessons/step3_conversation_history_solution/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step4_structured_outputs/README.md)
+🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e02_system_prompt/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s03_conversation_history/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e04_structured_outputs/README.md)
 ---|---|---|---

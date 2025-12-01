@@ -1,6 +1,6 @@
-# Lesson 5: Tool calling
+# Exercise 5: Tool calling
 
-In this lesson, you will program the [chatbot](chatbot.py) to make use of the tools defined at the top of the file.
+In this exercise, you will program the [chatbot](chatbot.py) to make use of the tools defined at the top of the file.
 
 ## Motivation
 
@@ -105,7 +105,7 @@ The behavior of the LLM when choosing to call tools can be controlled through tw
 * `tool_choice`, which can be the default `auto` (0 or more tools) or `none` (0 tools), `required` (1 or more tools), `forced` (where the list of tools that must be called is specified)
 * `parallel_tool_calls` which is `true` if the LLM is allowed to request multiple tool calls per exchange, or `false` to force a maximum of 1
 
-The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) is the standardized way to serve tools for LLM use. It is out-of-scope for this lesson, but a very relevant topic for production-grade deployments and extensibility.
+The [Model Context Protocol (MCP)](https://modelcontextprotocol.io/docs/getting-started/intro) is the standardized way to serve tools for LLM use. It is out-of-scope for this exercise, but a very relevant topic for production-grade deployments and extensibility.
 
-🏠 [Overview](/README.md) | ◀️ [Previous lesson](/src/chatbot/lessons/step4_structured_outputs/README.md) | ✅ [Solution](/src/chatbot/lessons/step5_tool_calling_solution/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step6_custom_agent/README.md)
+🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e04_structured_outputs/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s05_tool_calling/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e06_custom_agent/README.md)
 ---|---|---|---

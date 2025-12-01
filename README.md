@@ -4,13 +4,13 @@ This is a tutorial for those looking to get started programming GenAI-based appl
 
 Lesson | Links
 ---    |---
-Introduction | 📖 [Exercise](/src/chatbot/lessons/step0_intro/README.md)
-Prompting | 📖 [Exercise](/src/chatbot/lessons/step1_prompting/README.md) ✅ [Solution](/src/chatbot/lessons/step1_prompting_solution/README.md)
-System instructions | 📖 [Exercise](/src/chatbot/lessons/step2_system_prompt/README.md) ✅ [Solution](/src/chatbot/lessons/step2_system_prompt_solution/README.md)
-Tracking conversation history | 📖 [Exercise](/src/chatbot/lessons/step3_conversation_history/README.md) ✅ [Solution](/src/chatbot/lessons/step3_conversation_history_solution/README.md)
-Structured outputs | 📖 [Exercise](/src/chatbot/lessons/step4_structured_outputs/README.md) ✅ [Solution](/src/chatbot/lessons/step4_structured_outputs_solution/README.md)
-Tool calling | 📖 [Exercise](/src/chatbot/lessons/step5_tool_calling/README.md) ✅ [Solution](/src/chatbot/lessons/step5_tool_calling_solution/README.md)
-Custom agent | 📖 [Exercise](/src/chatbot/lessons/step6_custom_agent/README.md) ✅ [Solution](/src/chatbot/lessons/step6_custom_agent_solution/README.md)
+Introduction | 📖 [Exercise](/src/chatbot/lessons/exercises/e00_intro/README.md)
+Prompting | 📖 [Exercise](/src/chatbot/lessons/exercises/e01_prompting/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s01_prompting/README.md)
+System instructions | 📖 [Exercise](/src/chatbot/lessons/exercises/e02_system_prompt/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s02_system_prompt/README.md)
+Tracking conversation history | 📖 [Exercise](/src/chatbot/lessons/exercises/e03_conversation_history/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s03_conversation_history/README.md)
+Structured outputs | 📖 [Exercise](/src/chatbot/lessons/exercises/e04_structured_outputs/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s04_structured_outputs/README.md)
+Tool calling | 📖 [Exercise](/src/chatbot/lessons/exercises/e05_tool_calling/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s05_tool_calling/README.md)
+Custom agent | 📖 [Exercise](/src/chatbot/lessons/exercises/e06_custom_agent/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s06_custom_agent/README.md)
 
 A basic [`streamlit`](https://docs.streamlit.io/get-started) chat UI is provided, so that the lessons can solely focus on the chatbot logic.
 
@@ -72,14 +72,14 @@ A basic [`streamlit`](https://docs.streamlit.io/get-started) chat UI is provided
 
     If you make code changes to the chatbot logic while the app is running, you need to kill and restart it. Do this by issuing Ctrl-C in the terminal - simply closing the webpage is not enough, since the streamlit server continues to run!
 
-1. Alternatively, each lesson can be run in console mode
+1. Alternatively, each exercise can be run in console mode
 
     ```powershell
-    uv run step-5
+    uv run exercise-5
     ```
 
     or a corresponding solution
 
     ```powershell
-    uv run step-5-solution
+    uv run solution-5
     ```

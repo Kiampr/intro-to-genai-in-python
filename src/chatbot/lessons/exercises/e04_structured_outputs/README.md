@@ -1,6 +1,6 @@
-# Lesson 4: Structured outputs
+# Exercise 4: Structured outputs
 
-For this lesson, update the [chatbot logic](chatbot.py) so that answers are no longer free-text. Instead we want the LLM to output an object describing a person, according to the class defined at the top of the file.
+For this exercise, update the [chatbot logic](chatbot.py) so that answers are no longer free-text. Instead we want the LLM to output an object describing a person, according to the class defined at the top of the file.
 
 ## Motivation
 
@@ -98,5 +98,5 @@ For example, the below will raise a Pydantic `ValidationError` due to the negati
 movie = Movie(title="Impossible Movie", year=-1, genre="horror", rating=0.1)
 ```
 
-🏠 [Overview](/README.md) | ◀️ [Previous lesson](/src/chatbot/lessons/step3_conversation_history/README.md) | ✅ [Solution](/src/chatbot/lessons/step4_structured_outputs_solution/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step5_tool_calling/README.md)
+🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e03_conversation_history/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s04_structured_outputs/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e05_tool_calling/README.md)
 ---|---|---|---

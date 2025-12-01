@@ -13,11 +13,12 @@ def list_chatbot_names() -> List[str]:
     Returns: a list of folder names
     """
     chatbot_names: List[str] = []
-    lessons_path = Path(__file__).parent.parent / "chatbot" / "lessons"
-    if lessons_path.exists():
-        for lesson in lessons_path.iterdir():
-            if lesson.is_dir() and (lesson / "chatbot.py").is_file():
-                chatbot_names.append(lesson.name)
+    root_path = Path(__file__).parent.parent / "chatbot" / "lessons"
+    for subdir in root_path.rglob("*"):
+        if subdir.is_dir() and (subdir / "chatbot.py").is_file():
+            relative_path = subdir.relative_to(root_path)
+            chatbot_name = ".".join(relative_path.parts)
+            chatbot_names.append(chatbot_name)
     return chatbot_names
 
 

@@ -12,12 +12,15 @@ class BaseChatBot(ABC):
 
     @classmethod
     def get_name(cls) -> str:
-        """Returns the name of the directory holding the implementation, e.g. step0_intro"""
-        return Path(inspect.getfile(cls)).parent.name
+        """Returns the name of the directory holding the implementation, e.g. exercises.00_intro"""
+        chatbot_path = Path(inspect.getfile(cls))
+        lessons_path = Path(__file__).parent / "lessons"
+        relative_path = chatbot_path.parent.relative_to(lessons_path)
+        return ".".join(relative_path.parts)
 
     @classmethod
     def get_description(cls) -> str:
-        """Returns the description of the implementation, extracted from the doccomments"""
+        """Returns the description of the implementation, extracted from the doc-comments"""
         return inspect.getdoc(cls) or ""
 
     @classmethod

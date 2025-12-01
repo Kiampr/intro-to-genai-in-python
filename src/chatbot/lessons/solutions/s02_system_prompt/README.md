@@ -1,4 +1,4 @@
-# Lesson 2: System prompt (solution)
+# Solution 2: System prompt
 
 A possible [solution](chatbot.py) makes the chatbot change roles depending on the type of user message.
 
@@ -44,5 +44,5 @@ Here, the system prompt has its own dedicated [`langchain_core.prompts.SystemMes
 
 You can verify that the system prompt is effective by observing the changes in the structure or tone of the assistant's replies.
 
-🏠 [Overview](/README.md) | ◀️ [Back to lesson](/src/chatbot/lessons/step2_system_prompt/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step3_conversation_history/README.md)
+🏠 [Overview](/README.md) | ◀️ [Back to exercise](/src/chatbot/lessons/exercises/e02_system_prompt/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e03_conversation_history/README.md)
 ---|---|---

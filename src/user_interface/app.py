@@ -74,7 +74,7 @@ if "profiles" not in st.session_state:
 # list of messages in the conversation so far
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = ChatHistory()
-# chatbot implementation currently selected, among chatbot.lessons
+# chatbot implementation currently selected, among chatbot.lessons.*
 if "chatbot" not in st.session_state:
     all_chatbot_names = list_chatbot_names()
     selected_chatbot_name = all_chatbot_names[0]

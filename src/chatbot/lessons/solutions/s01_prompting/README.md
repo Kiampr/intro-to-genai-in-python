@@ -1,4 +1,4 @@
-# Lesson 1: Text prompting (solution)
+# Exercise 1: Text prompting (solution)
 
 The [solution](chatbot.py) to the exercise uses an LLM to answer user queries.
 
@@ -30,5 +30,5 @@ As mentioned before, passing `ctx` via `config` is done only to enable reporting
 
 After completing the exercise, you should be able to prompt the chatbot and get reasonable results, as provided by the LLM. Hallucinations may happen :D and this is more likely the smaller the chosen model is, in terms of number of active parameters.
 
-🏠 [Overview](/README.md) | ◀️ [Back to lesson](/src/chatbot/lessons/step1_prompting/README.md) | ▶️ [Next lesson](/src/chatbot/lessons/step2_system_prompt/README.md)
+🏠 [Overview](/README.md) | ◀️ [Back to exercise](/src/chatbot/lessons/exercises/e01_prompting/README.md) | ▶️ [Next exercise](/src/chatbot/exercises/e0solutions/2_system_prompt/README.md)
 ---|---|---
