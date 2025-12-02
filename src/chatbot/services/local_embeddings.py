@@ -4,7 +4,7 @@ from chatbot.config import config
 
 
 class LocalEmbeddings(OpenAIEmbeddings):
-    """Represents a locally-hosted Ollama embeddings service
+    """Represents a locally-hosted embeddings service orchestrated by Ollama
     Usage:
          embeddings_service = LocalEmbeddings()
          text = "Hi"

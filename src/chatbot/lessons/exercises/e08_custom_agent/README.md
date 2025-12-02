@@ -1,4 +1,4 @@
-# Exercise 6: Custom agent
+# Exercise 8: Custom agent
 
 In this exercise, you will define your own custom LangGraph agent as part of the [chatbot logic](chatbot.py).
 
@@ -70,5 +70,5 @@ Some fields may have custom reduction operations associated. This is a function 
 
 The possibilities of how a given node's logic can be implemented are endless. They can use algorithms, call LLMs, consult web services / file systems / databases or even invoke their own nested agents. This makes graphs very versatile for advanced AI application development, with the trade-off of implementation and maintenance complexity. This can be mitigated, in part, by using a modular code structure with type annotations, making use of classes split among separate files.
 
-🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e05_tool_calling/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s06_custom_agent/README.md)
+🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e07_rag/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s08_custom_agent/README.md)
 ---|---|---

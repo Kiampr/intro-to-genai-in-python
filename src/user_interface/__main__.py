@@ -17,7 +17,7 @@ def start_streamlit(argv: List[str] | None = None) -> int:
     streamlit_cmd = [
         "streamlit",
         "run",
-        str(streamlit_app_path),
+        str(streamlit_app_path.resolve()),
         "--server.address",
         "127.0.0.1",
     ]

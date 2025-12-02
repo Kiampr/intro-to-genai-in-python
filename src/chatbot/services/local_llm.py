@@ -4,7 +4,7 @@ from chatbot.config import config
 
 
 class LocalLLM(ChatOpenAI):
-    """Represents a locally-hosted Ollama LLM service
+    """Represents a locally-hosted LLM service orchestrated by Ollama
     Usage:
          llm_service = LocalLLM()
          messages = [user_message(content="Hi")]

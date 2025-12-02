@@ -7,19 +7,24 @@ requires-python = ">=3.13,<4.0.0"
 readme = "README.md"
 dependencies = [
     "streamlit~=1.50.0",
-    "streamlit-chat~=0.1.1",
-    "langgraph~=1.0.4",
+    "streamlit-chat~=0.1.0",
+    "langchain~=1.1.0",
+    "langchain-core~=1.1.0",
+    "langchain-community~=0.4.0",
+    "langchain-mcp-adapters~=0.1.0",
     "langchain-openai~=1.1.0",
-    "pydantic~=2.12.5",
-    "pyyaml~=6.0.3",
+    "langgraph~=1.0.0",
+    "faiss-cpu~=1.13.0",
+    "pydantic~=2.12.0",
+    "pyyaml~=6.0.0",
     "rich~=14.1.0",
-    "tzdata~=2025.2",
+    "tzdata~=2025.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-    "ruff~=0.14.7",
-    "pyright~=1.1.407",
+    "ruff~=0.14.0",
+    "pyright~=1.1.0",
 ]
 
 [project.scripts]
@@ -35,8 +40,12 @@ exercise-4 = "chatbot.lessons.exercises.e04_structured_outputs.__main__:main"
 solution-4 = "chatbot.lessons.solutions.s04_structured_outputs.__main__:main"
 exercise-5 = "chatbot.lessons.exercises.e05_tool_calling.__main__:main"
 solution-5 = "chatbot.lessons.solutions.s05_tool_calling.__main__:main"
-exercise-6 = "chatbot.lessons.exercises.e06_custom_agent.__main__:main"
-solution-6 = "chatbot.lessons.solutions.s06_custom_agent.__main__:main"
+exercise-6 = "chatbot.lessons.exercises.e06_mcp.__main__:main"
+solution-6 = "chatbot.lessons.solutions.s06_mcp.__main__:main"
+exercise-7 = "chatbot.lessons.exercises.e07_rag.__main__:main"
+solution-7 = "chatbot.lessons.solutions.s07_rag.__main__:main"
+exercise-8 = "chatbot.lessons.exercises.e08_custom_agent.__main__:main"
+solution-8 = "chatbot.lessons.solutions.s08_custom_agent.__main__:main"
 
 [tool.hatch.build.targets.sdist]
 include = [

@@ -5,12 +5,17 @@ from typing import Any, Dict
 
 
 class AuthenticationType(StrEnum):
-    API_KEY = "api_key"
+    ENV_VAR_SECRET = "env_var_secret"
 
 
 class ServiceType(StrEnum):
     LOCAL = "local"
     REMOTE = "remote"
+
+
+class VectorDBSimilarityType(StrEnum):
+    EUCLIDEAN_DISTANCE = "euclidean_distance"
+    COSINE = "cosine"
 
 
 class Config:
@@ -20,6 +25,7 @@ class Config:
             config: Dict[str, Any] = yaml.safe_load(f)
             self._llm_config: Dict[str, Any] = config["llm_config"]
             self._embeddings_config: Dict[str, Any] = config["embeddings_config"]
+            self._vectordb_config: Dict[str, Any] = config["vectordb_config"]
             self._log_level: str = config["log_level"]
 
     def get_llm_type(self) -> ServiceType:
@@ -33,6 +39,12 @@ class Config:
 
     def get_embeddings_config(self) -> Dict[str, Any]:
         return self._embeddings_config.copy()
+
+    def get_vectordb_type(self) -> ServiceType:
+        return ServiceType(self._vectordb_config["type"])
+
+    def get_vectordb_config(self) -> Dict[str, Any]:
+        return self._vectordb_config.copy()
 
     def get_log_level(self) -> str:
         return self._log_level

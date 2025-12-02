@@ -16,5 +16,5 @@ def configure_logging() -> None:
     logging.basicConfig(level=level, format="%(message)s", handlers=[handler])
 
     # suppress some the 3rd party packages INFO logging, to reduce clutter
-    for logger_name in ["httpx"]:
-        logging.getLogger(logger_name).setLevel(logging.WARNING)
+    for logger_name in ["httpx", "mcp"]:
+        logging.getLogger(logger_name).setLevel(logging.ERROR)

@@ -1,9 +1,9 @@
 ## Predefined configuration sets - to be referenced below
 
-# remote authentication via API key stored in an env var
+# remote LLM authentication via API key stored in an env var
 api_key_authentication: &api_key_authentication_settings
-  type: api_key
-  api_key_env_var: OPENAI_API_KEY
+  type: env_var_secret
+  env_var_name: OPENAI_API_KEY
 
 # configuration for a local LLM service, launched using Ollama
 local_llm: &local_llm_settings
@@ -35,6 +35,12 @@ remote_embeddings: &remote_embeddings_settings
   authentication:
     <<: *api_key_authentication_settings
 
+# configuration for a local vector store service
+local_vectordb: &local_vectordb_settings
+  type: local
+  # choose between: cosine, euclidean_distance
+  similarity: cosine
+
 ## App configuration settings
 
 # minimum level for log messages to be displayed
@@ -57,3 +63,8 @@ llm_config:
 # - remote_embeddings_settings - a cloud-hosted service
 embeddings_config:
   <<: *local_embeddings_settings
+
+# choose one of the predefined vector store service configs from above:
+# - local_vectordb_settings - a locally-hosted service
+vectordb_config:
+  <<: *local_vectordb_settings

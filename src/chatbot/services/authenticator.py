@@ -18,8 +18,8 @@ class Authenticator:
 
     def get_api_key(self) -> str:
         match self._auth_config["type"]:
-            case AuthenticationType.API_KEY:
-                api_key = os.getenv(self._auth_config["api_key_env_var"]) or ""
+            case AuthenticationType.ENV_VAR_SECRET:
+                api_key = os.getenv(self._auth_config["env_var_name"]) or ""
                 return api_key
             case _:
                 raise NotImplementedError

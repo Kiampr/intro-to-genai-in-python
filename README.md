@@ -10,7 +10,9 @@ System instructions | 📖 [Exercise](/src/chatbot/lessons/exercises/e02_system_
 Tracking conversation history | 📖 [Exercise](/src/chatbot/lessons/exercises/e03_conversation_history/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s03_conversation_history/README.md)
 Structured outputs | 📖 [Exercise](/src/chatbot/lessons/exercises/e04_structured_outputs/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s04_structured_outputs/README.md)
 Tool calling | 📖 [Exercise](/src/chatbot/lessons/exercises/e05_tool_calling/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s05_tool_calling/README.md)
-Custom agent | 📖 [Exercise](/src/chatbot/lessons/exercises/e06_custom_agent/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s06_custom_agent/README.md)
+Model Context Protocol (MCP) | 📖 [Exercise](/src/chatbot/lessons/exercises/e06_mcp/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s06_mcp/README.md)
+Retrieval Augmented Generation (RAG) | 📖 [Exercise](/src/chatbot/lessons/exercises/e07_rag/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s07_rag/README.md)
+Custom agent | 📖 [Exercise](/src/chatbot/lessons/exercises/e08_custom_agent/README.md) ✅ [Solution](/src/chatbot/lessons/solutions/s08_custom_agent/README.md)
 
 A basic [`streamlit`](https://docs.streamlit.io/get-started) chat UI is provided, so that the lessons can solely focus on the chatbot logic.
 
