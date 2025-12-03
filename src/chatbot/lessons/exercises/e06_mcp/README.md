@@ -49,7 +49,7 @@ def sum_tool(a: int, b: int) -> int:
     return a + b 
 ```
 
-With this in-place, notice that the tool will be reported in a log message at ther console during chatbot construction. Verify that the tools get called by the LangChain agent when prompted appropriately.
+With this in-place, the tool name should appear in a log message at the console during chatbot construction.
 
 ## Remote MCP server
 
@@ -64,7 +64,9 @@ Some examples suitable for this exercise:
 
 Instead of diving into the detailed structure of the MCP protocol, it is sufficient to discuss the high-level communication pattern.
 
-An MCP server can be hosted locally, on a private intranet or the public internet. Remote servers typically communicate over http or websocket, while local servers may also simply use standard console I/O. Clients connect to the server endpoints (URL, composed of host, port and path) and send a tool call request via JSON-RPC messages, indicating the desired tool and corresponding values for its arguments. For http, the headers are populated with authentication information, if required. The server then executes the tool and returns the result in its reply. In addition, servers can also stream logs or status updates back to the client during execution, so that the client can track progress while waiting for the final output.
+![MCP Communication](/images/mcp.png)
+
+An MCP server can be hosted locally, on a private intranet or the public internet. Remote servers typically communicate over http or websocket, while local servers may additionally use standard console I/O. Clients connect to the server and send tool call requests via JSON-RPC messages, indicating the tool name and corresponding values for its arguments. For http, the headers are populated with authentication information, if required. The server then executes the tool and returns the result in its reply. In addition, servers can also stream logs or status updates back to the client during execution, so that the client can track progress while waiting for the final output.
 
 ## Further reading
 
