@@ -1,11 +1,32 @@
 # Solution 6: Model Context Protocol
 
-In the solution, we connect the [chatbot](chatbot.py) to two public Model Context Protocol (MCP) servers.
+In the solution, we connect the [chatbot](chatbot.py) to one local and two public Model Context Protocol (MCP) servers.
 
-They are configured by specifying the URL and transport as `streamable_http`:
+## Local MCP tools
+
+In [mcp_server.py](mcp_server.py) we implemented the currency exchange tool and registered it with the local MCP server:
+
+```python
+@mcp_server.tool
+def convert_currency(...):
+    ...
+```
+
+Note that the decorator contains the variable holding the MCP server object. This implies that we could have several local MCP servers, each with their own tool set.
+
+## MCP configuration
+
+The MCP client's configuration has been extended to include two remote servers, specified using their URL and `streamable_http` transport:
 
 ```python
 mcp_config = {
+    # starts a local MCP server on a separate process with communication via stdio
+    "my_mcp_server": {
+        "transport": "stdio",
+        "command": sys.executable,
+        "args": [str(Path(__file__).parent / "mcp_server.py")],
+    },
+    # connects to two remote MCP servers using http communication
     "microsoft_learn" : {
         "url": "https://learn.microsoft.com/api/mcp",
         "transport": "streamable_http",
@@ -19,9 +40,9 @@ mcp_config = {
 
 ## Verification
 
-If the connection to the MCP servers is successful, the available tools will be listed in a log message at chatbot creation.
+If the connection to the MCP servers is successful, all available tools will be listed in a log message at chatbot creation.
 
-Ask questions about Microsoft software or time conversions and verify that the tools get called by observing the status updates.
+Ask questions about Microsoft software, the current time or currency conversions and verify that the tools get called by observing the status updates.
 
 🏠 [Overview](/README.md) | ◀️ [Back to exercise](/src/chatbot/lessons/exercises/e06_mcp/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e07_rag/README.md)
 ---|---|---

@@ -14,18 +14,46 @@ The exercise code already instantiates an MCP client in the constructor
 
 ```python
 def __init__(self):
-    mcp_config = {}
     mcp_client = MCPClient(mcp_config)
     mcp_tools = mcp_client.get_tools()
 ```
 
-then creates a LangChain agent equipped with the resulting tools
+## Local MCP server
+
+The MCP connection configuration contains a local server which will be started in a separate process. Communication will happen via console messages (standard I/O).
 
 ```python
-    self._graph = create_agent(model=LLM(), tools=mcp_tools)
+mcp_config = {
+    "my_mcp_server": {
+        "transport": "stdio",
+        "command": sys.executable,
+        "args": [str(Path(__file__).parent / "mcp_server.py")],
+    }
+}
 ```
 
-Your task is to fill in the configuration to connect to public MCP servers on the internet (using `streamable_http` transport). Be conscious that tools allow an LLM to execute code defined externally, which could be exploited for malicious purposes. Therefore, only use MCP servers from reputable vendors and take proactive steps to minimize the attack surface (e.g. hosting the app in a container or VM with limited privileges). 
+The MCP server logic is defined using [FastMCP](https://github.com/jlowin/fastmcp) in [`mcp_server.py`](mcp_server.py). Notice that there are no tools defined yet.
+
+```python
+mcp_server = FastMCP("my_mcp_tools")
+
+if __name__ == "__main__":
+    mcp_server.run(transport="stdio")
+```
+
+Your first task is to populate the local server with one or more tools and register them by using the `@mcp_server.tool` decorator. Use, for example, the currency conversion tool from the previous exercise.
+
+```python
+@mcp_server.tool
+def sum_tool(a: int, b: int) -> int:
+    return a + b 
+```
+
+With this in-place, notice that the tool will be reported in a log message at ther console during chatbot construction. Verify that the tools get called by the LangChain agent when prompted appropriately.
+
+## Remote MCP server
+
+The power of MCP lies in resuing tools defined by others. To leverage this, extend in the MCP configuration to connect to public MCP servers on the internet using `streamable_http` transport. Be conscious that tools allow an LLM to execute code controlled externally, which could be exploited for malicious purposes. Therefore, only use MCP servers from reputable vendors and take proactive steps to minimize the attack surface (e.g. hosting the app in a container or VM with limited privileges). 
 
 Some examples suitable for this exercise:
 

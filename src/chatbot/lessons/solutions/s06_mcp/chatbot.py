@@ -1,3 +1,6 @@
+import logging
+import sys
+from pathlib import Path
 from typing import override
 from chatbot.chatbot_base import BaseChatBot
 from chatbot.chat_context import ChatContext
@@ -5,7 +8,6 @@ from chatbot.chat_history import ChatHistory, assistant_message, user_message
 from chatbot.services.llm import LLM
 from chatbot.services.mcp_client import MCPClient
 from langgraph.prebuilt import create_react_agent
-import logging
 
 logger = logging.getLogger(__name__)
 
@@ -15,8 +17,15 @@ class ChatBot(BaseChatBot):
     """Uses an LLM with tools from Model Context Protocol servers"""
 
     def __init__(self):
-        # connection information for MCP servers
+        # connect to MCP servers
         mcp_config = {
+            # starts a local MCP server on a separate process with communication via stdio
+            "my_mcp_server": {
+                "transport": "stdio",
+                "command": sys.executable,
+                "args": [str(Path(__file__).parent / "mcp_server.py")],
+            },
+            # connects to two remote MCP servers using http communication
             "microsoft_learn": {
                 "url": "https://learn.microsoft.com/api/mcp",
                 "transport": "streamable_http",
@@ -27,6 +36,7 @@ class ChatBot(BaseChatBot):
             },
         }
         mcp_client = MCPClient(mcp_config)
+        # gather the MCP tools
         mcp_tools = mcp_client.get_tools()
         if not mcp_tools:
             logger.warning("No MCP tools were found!")
@@ -34,6 +44,7 @@ class ChatBot(BaseChatBot):
             logger.info(
                 f"Available MCP tools:{''.join(f'\n\t{tool.name}' for tool in mcp_tools)}"
             )
+        # create an agent that will use the tools
         self._graph = create_react_agent(model=LLM(), tools=mcp_tools)
         self._chat_history = ChatHistory()
 
