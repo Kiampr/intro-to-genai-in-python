@@ -10,11 +10,27 @@ Large Language Models (LLMs) have been trained on publicly-available data. Howev
 
 ![RAG process](/images/rag.png)
 
-The relevance of the retrieved results is crucial to success. Since queries are expressed in natural language, the search should take linguistic and contextual aspects into account, rather than focus on specific keywords. Therefore, instead of traditional SQL databases, we will use vector stores which are able to perform semantic search. In order to do this, text needs to be transformed into a vector of floating-point numbers, coresponding to coordinates in a high-dimensional space, called embeddings. This representation allows computing relevance via linear algebra operations, such as distances or angles.
+The relevance of the retrieved results is crucial to success. Since queries are expressed in natural language, the search should take linguistic and contextual aspects into account, rather than focus on specific keywords. Therefore, instead of traditional SQL databases, we will use vector stores which are able to perform semantic search. In order to do this, text needs to be transformed into a vector of floating-point numbers, corresponding to coordinates in a high-dimensional space, called embeddings. This representation allows computing relevance via linear algebra operations, such as distances or angles.
 
-Embeddings are computed by models trained specifically for this purpose. Like LLMs, these models are distinguished by their number of parameters, context lengths and (CPU or GPU) hardware requirements. If their weights are made publicly available, orchestrators like Ollama or vLLM can be used to run them on local hardware. Proprietary models, such as those provided by OpenAI, are hosted in the cloud and accessed through endpoints after providing authnetication credentials.
+Embeddings are computed by models trained specifically for this purpose. Like LLMs, these models are distinguished by their number of parameters, context lengths and (CPU or GPU) hardware requirements. If their weights are made publicly available, orchestrators like Ollama or vLLM can be used to run them on local hardware. Proprietary models, such as those provided by OpenAI, are hosted in the cloud and accessed through endpoints after providing authentication credentials.
 
-A key operation when populating the database is splitting the content into chunks. The size of each chunk has to be small enough to preserve focus and fit in the context window of the embedding model, but also big enough to be useful when observed as stand-alone content. While the optimal chunking strategy varies by document and application, rules-of-thumb include splitting by paragraph, page or sub-chapter.
+ **Embedding Model**                | **Active Params** | **Context Window** | **Embedding Dimension** | **Weights & Arch**       | **License**       | **Hardware Requirements** | **Ollama Catalog Name** |
+---                                 |---                |---                 |---                      |---                       |---                |---                        |---                      |
+ **Nomic Text Embedddings**         | 137M              | 8192               | 64 - 768                | Open / Open              | Apache 2.0        | CPU or GPU, ~0.3GB VRAM   | `nomic-embed-text`      |
+ **Google Gemma Text Embeddings**   | 308M              | 2000               | 128 - 768               | Open / Open              | Apache 2.0-like   | CPU or GPU, ~0.6GB VRAM   | `embeddinggemma:300m`   |
+ **OpenAI text-embedding-3-small**  | 350M              | 2048               | 512 - 1536              | Closed / Closed          | Proprietary       | Unknown                   | Cloud only              |
+ **OpenAI text-embedding-3-large**  | 1000M             | 4096               | 256 - 3072              | Closed / Closed          | Proprietary       | Unknown                   | Cloud only              |
+ **OpenAI text-embedding-ada-002**  | 1500M             | 4096               | 1536                    | Closed / Closed          | Proprietary       | Unknown                   | Cloud only              |
+
+Notes:
+
+* The context window size, given in tokens (1 token = ~4 characters), dictates how long the input text can be - this is why large texts have to be split into chunks, which are embedded individually.
+* OpenAI's text-embedding-ada-002 is an older model, outperformed by all the others on benchmarks, including those with smaller size.
+* Newer models support variable output dimension using Matryoshka Representation Learning (MRL).
+
+Despite its small size, **Nomic Text Embedddings** scores highly on benchmarks, making it currently the best choice to run locally even on modest hardware.
+
+A key operation when populating the database is splitting the content into chunks. The size of each chunk has to be small enough to fit in the context window of the embedding model, but also big enough to be useful when observed as stand-alone content. While the optimal chunking strategy varies by document and application, rules-of-thumb include splitting by paragraph, page or section.
 
 ## How do I do it?
 
