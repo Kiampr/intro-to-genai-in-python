@@ -20,7 +20,7 @@ As we have seen before, the ReAct agent, predefined in LangGraph behaves accordi
 
 ## Graph state
 
-Information is captured in a `State` class, which , for the graph above, simply contains the list of messages
+Information is captured in a `State` class, which, for the graph above, simply contains the list of messages
 
 ```python
 class State(BaseModel):

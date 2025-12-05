@@ -2,7 +2,7 @@
 
 In this exercise, you will make the [chatbot logic](chatbot.py) use the LLM to answer user queries.
 
-To achieve this, inspect the LLM classes in [`src/chatbot/services`](/src/chatbot/services) and the configuration file [`src/config.yaml`](/src/user_interface/config.py). The latter allows you to choose which LLM is used and with what parameters.
+To achieve this, inspect the LLM classes in [`src/chatbot/services`](/src/chatbot/services) and the configuration file [`src/config.yaml`](/src/config.yaml). The latter allows you to choose which LLM is used and with what parameters.
 
 ## LLM selection
 
@@ -30,7 +30,7 @@ Not all models expose the `seed` parameter. Others also provide a `top_k` parame
 
 For more info see this [article](https://towardsai.net/p/machine-learning/understanding-llm-sampling-top-k-top-p-and-temperature). This [OpenAI post](https://community.openai.com/t/cheat-sheet-mastering-temperature-and-top-p-in-chatgpt-api/172683) gives practical guidance on what values to use for different applications.
 
-Also study the ['ChatOpenAI`](https://python.langchain.com/api_reference/openai/chat_models/langchain_openai.chat_models.base.ChatOpenAI.html#langchain_openai.chat_models.base.ChatOpenAI) class in LangChain to understand the different ways LLMs can be configured and called.
+Also study the [`ChatOpenAI`](https://python.langchain.com/api_reference/openai/chat_models/langchain_openai.chat_models.base.ChatOpenAI.html#langchain_openai.chat_models.base.ChatOpenAI) class in LangChain to understand the different ways LLMs can be configured and called.
 
 🏠 [Overview](/README.md) | ◀️ [Previous exercise](/src/chatbot/lessons/exercises/e00_intro/README.md) | ✅ [Solution](/src/chatbot/lessons/solutions/s01_prompting/README.md) | ▶️ [Next exercise](/src/chatbot/lessons/exercises/e02_system_prompt/README.md)
 ---|---|---|---

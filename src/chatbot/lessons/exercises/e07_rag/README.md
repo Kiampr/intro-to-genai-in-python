@@ -4,7 +4,7 @@ In this exercise, you will extend the query sent to the [chatbot](chatbot.py) wi
 
 ## Motivation
 
-Large Language Models (LLMs) have been trained on publicly-available data. However vast, this will still not be sufficient to accurately answer queries on highly-specialized domain-specific aspects. In order to bridge this gap, the query can be accompanied by relevant extracts from a curated corpus of knowledge stored in a database. This process is referred to Retrieval Augmented Generation (RAG).
+Large Language Models (LLMs) have been trained on publicly-available data. However vast, this will still not be sufficient to accurately answer queries on highly-specialized domain-specific aspects. In order to bridge this gap, the query can be accompanied by relevant extracts from a curated corpus of knowledge stored in a database. This process is referred to as Retrieval Augmented Generation (RAG).
 
 ## Vector stores and embeddings
 

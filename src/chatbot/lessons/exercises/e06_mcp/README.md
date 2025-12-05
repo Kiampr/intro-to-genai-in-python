@@ -1,6 +1,6 @@
 # Exercise 6: Model Context Protocol
 
-In this exercise, you will equip the [chatbot](chatbot.py) to 3rd party tools hosted on Model Context Protocol (MCP) servers.
+In this exercise, you will equip the [chatbot](chatbot.py) with 3rd party tools hosted on Model Context Protocol (MCP) servers.
 
 ## Motivation
 
@@ -53,7 +53,7 @@ With this in-place, the tool name should appear in a log message at the console 
 
 ## Remote MCP server
 
-The power of MCP lies in resuing tools defined by others. To leverage this, extend in the MCP configuration to connect to public MCP servers on the internet using `streamable_http` transport. Be conscious that tools allow an LLM to execute code controlled externally, which could be exploited for malicious purposes. Therefore, only use MCP servers from reputable vendors and take proactive steps to minimize the attack surface (e.g. hosting the app in a container or VM with limited privileges). 
+The power of MCP lies in resuing tools defined by others. To leverage this, extend in the MCP configuration to connect to public MCP servers on the internet using `streamable_http` transport. Be mindful that tools allow an LLM to execute code controlled externally, which could be exploited for malicious purposes. Therefore, only use MCP servers from reputable vendors and take proactive steps to minimize the attack surface (e.g. hosting the app in a container or VM with limited privileges).
 
 Some examples suitable for this exercise:
 
