@@ -131,3 +131,6 @@ TEST_SUITE = TestSuite(test_cases=TEST_CASES, passing_criteria=PASSING_CRITERIA,
 * [RAGAS](https://github.com/explodinggradients/ragas) - RAG assessment framework
 * [LangSmith](https://docs.smith.langchain.com/) - LangChain's evaluation and observability platform
 * [OpenAI Evals](https://github.com/openai/evals) - Framework for evaluating LLMs
+
+🏠 [Overview](/README.md) | ◀️ [Introduction](/src/chatbot/lessons/exercises/e00_intro/README.md)
+---|---
