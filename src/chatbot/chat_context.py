@@ -38,7 +38,7 @@ class ChatContext(BaseCallbackHandler):
         tool_name = serialized.get("name", "tool")
         with self._lock:
             self._tool_call_registry[run_id] = tool_name
-        self.update_status(f"🔨 Calling {tool_name}")
+        self.update_status(f"🔨 Calling {tool_name}({input_str.strip('{}')})")
 
     @override
     def on_tool_end(self, output: str, *, run_id: UUID, **kwargs) -> None:
@@ -47,7 +47,7 @@ class ChatContext(BaseCallbackHandler):
             return
         with self._lock:
             tool_name = self._tool_call_registry.pop(run_id, "tool")
-        self.update_status(f"✅ Done {tool_name}")
+        self.update_status(f"✅ {tool_name} returned: {output}")
 
     @override
     def on_tool_error(
