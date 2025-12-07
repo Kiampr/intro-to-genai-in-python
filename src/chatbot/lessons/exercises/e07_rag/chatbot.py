@@ -30,6 +30,11 @@ class ChatBot(BaseChatBot):
         # create a list of langchain_core.documents.Document and pass it to self._vectordb.add_documents
 
     @override
+    def reset(self) -> None:
+        """Reset chatbot to initial state"""
+        self._chat_history.clear()
+
+    @override
     def get_answer(self, question: str, ctx: ChatContext) -> str:
         """
         Produce the assistant's reply to the provided user question.

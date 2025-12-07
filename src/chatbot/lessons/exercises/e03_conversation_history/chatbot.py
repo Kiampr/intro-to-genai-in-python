@@ -13,6 +13,12 @@ class ChatBot(BaseChatBot):
         self._llm = LLM()
 
     @override
+    def reset(self) -> None:
+        """Reset chatbot to initial state"""
+        # TODO: don't forget to clear chat history here!
+        pass
+
+    @override
     def get_answer(self, question: str, ctx: ChatContext) -> str:
         """
         Produce the assistant's reply to the provided user question.

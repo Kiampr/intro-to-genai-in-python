@@ -62,6 +62,14 @@ def __init__(self):
 
 Store reusable services (like the LLM) as fields to avoid unnecessary repeated setup.
 
+Finally, override the `reset` method to clear any state for repeatable testing purposes.
+
+```python
+@override
+def reset(self):
+    pass
+```
+
 ## Testing
 
 Each exercise and solution includes an automated test suite that validates your implementation. To run tests, launch the console interface and use the `/test` command:

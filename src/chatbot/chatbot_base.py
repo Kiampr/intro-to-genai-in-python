@@ -1,6 +1,6 @@
-from abc import ABC, abstractmethod
+import importlib
 import inspect
-import importlib.util
+from abc import ABC, abstractmethod
 from pathlib import Path
 from langchain_core.runnables import RunnableConfig
 from chatbot.chat_context import ChatContext
@@ -42,22 +42,16 @@ class BaseChatBot(ABC):
         """
         pass
 
-    def get_test_suite(self) -> TestSuite | None:
+    @classmethod
+    def get_test_suite(cls) -> TestSuite | None:
         """Automatically discover and load test suite from tests.py in the same directory."""
-        chatbot_path = Path(inspect.getfile(self.__class__))
-        tests_path = chatbot_path.parent / "tests.py"
-
-        if not tests_path.exists():
+        module_name = f"chatbot.lessons.{cls.get_name()}.tests"
+        try:
+            # import the tests from the lesson
+            module = importlib.import_module(module_name)
+            return getattr(module, "TEST_SUITE", None)
+        except Exception:
             return None
-
-        spec = importlib.util.spec_from_file_location("tests", tests_path)
-        if not spec or not spec.loader:
-            return None
-
-        tests_module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(tests_module)
-
-        return getattr(tests_module, "TEST_SUITE", None)
 
     @abstractmethod
     def get_answer(self, question: str, ctx: ChatContext) -> str:
