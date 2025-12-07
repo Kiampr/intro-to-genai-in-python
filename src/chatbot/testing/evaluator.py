@@ -20,53 +20,59 @@ class ChatbotEvaluator:
         """Run all test cases from a TestSuite and return results."""
 
         self.results = []
-        for test_case in test_suite.test_cases:
-            for repetition in range(test_suite.repetitions):
+        for repetition in range(test_suite.repetitions):
+            for test_idx, test_case in enumerate(test_suite.test_cases):
+                # Reset chatbot state: before each test suite starts or if test requires it
+                if test_idx == 0 or test_case.reset_chatbot:
+                    rich_console.print("[dim]Chatbot state reset[/dim]")
+                    self.chatbot.reset()
+
                 if test_suite.repetitions > 1:
                     rich_console.print(
-                        f"Running {len(test_suite)} test cases (repetition {repetition + 1} / {test_suite.repetitions})..."
+                        f"⏩ Running {len(test_suite)} test cases (repetition {repetition + 1} / {test_suite.repetitions}) ..."
                     )
                 else:
-                    rich_console.print(f"Running {len(test_suite)} test cases...")
+                    rich_console.print(f"⏩ Running {len(test_suite)} test cases ...")
 
                 # Run test
                 result = self._run_test_case(test_case, rich_console)
                 result["repetition"] = repetition + 1
                 self.results.append(result)
 
-            # Show per-test summary if multiple repetitions
-            if test_suite.repetitions > 1:
-                successes = sum(1 for result in self.results if result["success"])
+        # Show per-test summary if multiple repetitions
+        if test_suite.repetitions > 1:
+            for test_case in test_suite.test_cases:
+                successes = sum(1 for result in self.results if result["test_id"] == test_case.id and result["success"])
                 rich_console.print(
-                    f"  ⭐ {successes}/{test_suite.repetitions} runs passed ([bold_green]{successes / test_suite.repetitions * 100:.0f}%[/bold_green])"
+                    f"⭐ Test [yellow]{test_case.id}[/yellow]: {successes} / {test_suite.repetitions} runs passed ({successes / test_suite.repetitions * 100:.0f}%)"
                 )
 
+        # Show global summary of results
         if not self.results:
             success = False
-            rich_console.print("[yellow]No results were found![/yellow]")
+            rich_console.print("⚠️ [yellow]No results were found![/yellow]")
         else:
             success = self._check_passing_criteria(
                 test_suite.passing_criteria, rich_console
             )
 
-            # Print summary of results
             total = len(self.results)
             successful = sum(1 for r in self.results if r["success"])
             avg_time = sum(r["execution_time"] for r in self.results) / total
             rich_console.print(
-                f"Testing summary: {successful} / {total} passed ({successful / total * 100:.1f}%) | Avg time: {avg_time:.2f}s"
+                f"🎯 Testing summary: {successful} / {total} passed ({successful / total * 100:.1f}%) | Avg time: {avg_time:.2f}s"
             )
+
+        # Reset chatbot state after all tests complete
+        rich_console.print("[dim]Chatbot state reset[/dim]")
+        self.chatbot.reset()
+
         return success
 
     def _run_test_case(
         self, test_case: TestCase, rich_console: Console
     ) -> Dict[str, Any]:
         """Run a single test case and collect metrics."""
-
-        # Reset chatbot state before test if requested
-        if test_case.reset_chatbot:
-            rich_console.print("[dim]Resetting chatbot state[/dim]")
-            self.chatbot.reset()
 
         # Run case, tracking execution time
         rich_console.print(f"[[yellow]{test_case.id}[/yellow]] {test_case.question}")
@@ -105,7 +111,7 @@ class ChatbotEvaluator:
                     "score": len(keywords_found) / len(test_case.expected_keywords),
                 }
                 rich_console.print(
-                    f"    Keywords: found {metrics['keyword_match']['found']} expected {test_case.expected_keywords} ({metrics['keyword_match']['score'] * 100:.0f}%)"
+                    f"     Keywords: found {metrics['keyword_match']['found']} expected {test_case.expected_keywords} ({metrics['keyword_match']['score'] * 100:.0f}%)"
                 )
 
                 if metrics["keyword_match"]["score"] < 1.0:
