@@ -32,13 +32,14 @@ Semantic search works by transforming text into **embeddings** - vectors of floa
 
 **Embedding models** are trained specifically to generate embeddings. Like LLMs, they vary by parameter count, context length and hardware requirements. Models with publicly available weights can run locally using orchestrators like Ollama or vLLM. Proprietary models (such as those from OpenAI) are cloud-hosted and accessed via authenticated endpoints.
 
- **Embedding Model**                | **Active Params** | **Context Window** | **Embedding Dimension** | **Weights & Arch**       | **License**       | **Hardware Requirements** | **Ollama Catalog Name** |
----                                 |---                |---                 |---                      |---                       |---                |---                        |---                      |
- **Nomic Text Embeddings**          | 137M              | 8192               | 64 - 768                | Open / Open              | Apache 2.0        | CPU or GPU, ~0.3GB VRAM   | `nomic-embed-text`      |
- **Google Gemma Text Embeddings**   | 308M              | 2000               | 128 - 768               | Open / Open              | Apache 2.0-like   | CPU or GPU, ~0.6GB VRAM   | `embeddinggemma:300m`   |
- **OpenAI text-embedding-3-small**  | 350M              | 2048               | 512 - 1536              | Closed / Closed          | Proprietary       | Unknown                   | Cloud only              |
- **OpenAI text-embedding-3-large**  | 1000M             | 4096               | 256 - 3072              | Closed / Closed          | Proprietary       | Unknown                   | Cloud only              |
- **OpenAI text-embedding-ada-002**  | 1500M             | 4096               | 1536                    | Closed / Closed          | Proprietary       | Unknown                   | Cloud only              |
+ **Embedding Model**                | **Active Params** | **Context Window** | **Embedding Dimension** | **Weights & Arch**       | **License**       | **Hardware Requirements** | **Ollama Catalog Name**
+---                                 |---                |---                 |---                      |---                       |---                |---                        |---
+ **Nomic Text Embeddings**          | 137M              | 8192               | 64 - 768                | Open / Open              | Apache 2.0        | CPU or GPU, ~0.3GB VRAM   | `nomic-embed-text`
+ **Snowflake Arctic Embeddings**    | 137M              | 2000               | 64 - 768                | Open / Open              | Apache 2.0        | CPU or GPU, ~0.3GB VRAM   | `snowflake-arctic-embed:m-long`
+ **Google Gemma Text Embeddings**   | 308M              | 2000               | 128 - 768               | Open / Open              | Apache 2.0-like   | CPU or GPU, ~0.6GB VRAM   | `embeddinggemma:300m`
+ **OpenAI text-embedding-3-small**  | 350M              | 2048               | 512 - 1536              | Closed / Closed          | Proprietary       | Unknown                   | Cloud only
+ **OpenAI text-embedding-3-large**  | 1000M             | 4096               | 256 - 3072              | Closed / Closed          | Proprietary       | Unknown                   | Cloud only
+ **OpenAI text-embedding-ada-002**  | 1500M             | 4096               | 1536                    | Closed / Closed          | Proprietary       | Unknown                   | Cloud only
 
 Notes:
 
@@ -46,7 +47,7 @@ Notes:
 * OpenAI's text-embedding-ada-002 is an older model, outperformed by all the others on benchmarks, including those with smaller size.
 * Newer models support variable output dimension using Matryoshka Representation Learning (MRL).
 
-Despite its small size, **Nomic Text Embedddings** scores highly on benchmarks, even outperforming **OpenAI text-embedding-3-small**. It is a great choice to run locally even on modest hardware.
+Despite its small size, **Snowflake Arctic Embeddings** scores highly on RAG benchmarks. It is a great choice to run locally even on modest hardware.
 
 A key operation when populating the database is splitting the content into chunks. The size of each chunk has to be small enough to fit in the context window of the embedding model, but also big enough to be useful when observed as stand-alone content. While the optimal chunking strategy varies by document and application, rules-of-thumb include splitting by paragraph, page or section.
 

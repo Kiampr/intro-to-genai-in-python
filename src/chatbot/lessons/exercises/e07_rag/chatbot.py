@@ -21,6 +21,10 @@ class ChatBot(BaseChatBot):
     def __init__(self):
         self._llm = LLM()
         self._chat_history = ChatHistory()
+        self._build_vector_store()
+
+    def _build_vector_store(self) -> None:
+        """Chunks the document and populates a vector database with the content"""
         # create vector store
         self._vectordb = VectorDB()
         # TODO: read the document content from Path(__file__).parents[5] / "data" / "the_great_gatsby.txt"
@@ -41,23 +45,27 @@ class ChatBot(BaseChatBot):
         Can use ctx to emit status updates, which will be displayed in the UI.
         """
         ctx.update_status("🧠 Thinking...")
-        # record question in chat history
-        self._chat_history.add_message(user_message(question))
         # search the vector store for the top 10 relevant chunks
         relevant_chunks = self._vectordb.similarity_search(question, k=10)
         logger.info(
             f"Retrieved {len(relevant_chunks)} chunks relevant to the query:{''.join(f'\nChunk {doc.metadata["paragraph"]}: {doc.page_content[:30]}' for doc in relevant_chunks)}"
         )
-        system_prompt = system_message(
-            f"Respond to the user ONLY based on the following content:\n{'\n'.join(doc.page_content for doc in relevant_chunks)}"
-        )
-        # call the LLM with the system prompt and all historic messages
+        # augment the user question with the retrieved context
+        augmented_question = f"""Answer the user query using ONLY the information in the numbered paragraphs below.
+You MUST cite which paragraph number(s) you used in your answer (e.g., "According to paragraph 3...").
+
+{"\n\n".join(f"{doc.metadata['paragraph']}. {doc.page_content}" for doc in relevant_chunks)}
+
+User query: {question}"""
+        # call the LLM with the augmented question and all historic messages
         response = self._llm.invoke(
-            [system_prompt] + self._chat_history.messages, config=self.get_config(ctx)
+            self._chat_history.messages + [augmented_question],
+            config=self.get_config(ctx),
         )
         # extract the answer
         answer = str(response.content)
-        # record answer in chat history
+        # record original question and answer in chat history
+        self._chat_history.add_message(user_message(question))
         self._chat_history.add_message(assistant_message(answer))
 
         return answer

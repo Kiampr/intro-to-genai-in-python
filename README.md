@@ -57,10 +57,10 @@ A basic [`streamlit`](https://docs.streamlit.io/get-started) chat UI is provided
     * using winget
     >
     > ```powershell
-    > winget install --id Ollama.Ollama --scope user
+    > winget install --id Ollama.Ollama --version 0.13.0 --scope user
     > ```
 
-    * or [downloading](https://github.com/ollama/ollama/releases/tag/v0.12.3) and installing somewhere accessible e.g. `%APPDATA%`.
+    * or [downloading](https://github.com/ollama/ollama/releases/tag/v0.13.0) and installing somewhere accessible e.g. `%APPDATA%`.
 
 1. Use uv to setup the dependencies by running the following command at the git clone location
 

@@ -13,19 +13,19 @@ from chatbot.testing.test_suite import TestSuite, TestCase, PassingCriteria
 # Define test cases using TestCase objects
 TEST_CASES = [
     TestCase(
-        id="knowledge_retrieval",
-        question="What university did Gatsby attend?",
-        expected_keywords=["Oxford"],
+        id="person_of_interest",
+        question="What is the first name of Tom's mistress?",
+        expected_keywords=["Myrtle"],
     ),
     TestCase(
         id="specific_fact",
-        question="What is the last name of the narrator?",
-        expected_keywords=["Carraway"],
+        question="What university did Jay attend?",
+        expected_keywords=["Oxford"],
     ),
     TestCase(
-        id="synthesis",
-        question="In what year does the story take place?",
-        expected_keywords=["1922"],
+        id="enumeration",
+        question="What type of drink is served at Gatsby's parties?",
+        expected_keywords=["cocktail"],
     ),
 ]
 

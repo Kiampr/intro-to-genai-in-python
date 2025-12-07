@@ -23,7 +23,7 @@ remote_llm: &remote_llm_settings
 # configuration for a local embeddings service, launched using Ollama
 local_embeddings: &local_embeddings_settings
   type: local
-  model: "nomic-embed-text"
+  model: "snowflake-arctic-embed:m-long"
 
 # configuration for a remote embeddings service, hosted in the cloud
 remote_embeddings: &remote_embeddings_settings
