@@ -29,11 +29,11 @@ When only a small fraction of the system prompt's content is dynamic, you can eq
 from langchain_core.prompts import ChatPromptTemplate, SystemMessagePromptTemplate, MessagesPlaceholder
 
 def __init__(self):
-    self._llm = LLM()
-    self._system_prompt_template = ChatPromptTemplate.from_messages([
+    system_prompt_template = ChatPromptTemplate.from_messages([
         SystemMessagePromptTemplate.from_template("You are a {role}"),
         MessagesPlaceholder(variable_name="messages"),
     ])
+    self._llm = system_prompt_template | LLM()
 
 def get_answer(self, question: str, ctx: ChatContext) -> str:
     chat_messages = [user_message(question)]
