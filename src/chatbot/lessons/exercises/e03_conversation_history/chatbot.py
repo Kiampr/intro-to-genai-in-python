@@ -1,7 +1,7 @@
 from typing import override
 from chatbot.chatbot_base import BaseChatBot
 from chatbot.chat_context import ChatContext
-from chatbot.chat_history import user_message
+from chatbot.chat_history import ChatHistory, assistant_message, user_message
 from chatbot.services.llm import LLM
 
 
@@ -11,12 +11,13 @@ class ChatBot(BaseChatBot):
 
     def __init__(self):
         self._llm = LLM()
+        self._chat_history = ChatHistory()
 
     @override
     def reset(self) -> None:
         """Reset chatbot to initial state"""
         # TODO: don't forget to clear chat history here!
-        pass
+        self._chat_history.clear()
 
     @override
     def get_answer(self, question: str, ctx: ChatContext) -> str:
@@ -26,9 +27,12 @@ class ChatBot(BaseChatBot):
         """
         ctx.update_status("🧠 Thinking...")
         # TODO: study ChatHistory in chat_history.py
-        messages = [user_message(question)]
-        # call the LLM
-        response = self._llm.invoke(messages, config=self.get_config(ctx))
+
+        self._chat_history.add_message(user_message(question))
+        response = self._llm.invoke(
+            self._chat_history.messages, config=self.get_config(ctx)
+        )
+
         # extract the answer
         answer = str(response.content)
 
