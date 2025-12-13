@@ -14,7 +14,7 @@ from chatbot.testing.test_suite import TestSuite, TestCase, PassingCriteria
 TEST_CASES = [
     TestCase(
         id="person_extraction",
-        question="What is Einstein known for?",
+        question="What is Albert Einstein known for?",
         expected_keywords=["Albert", "Einstein", "1879"],
     ),
     TestCase(
