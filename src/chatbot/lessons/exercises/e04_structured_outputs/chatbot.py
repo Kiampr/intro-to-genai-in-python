@@ -21,6 +21,7 @@ class ChatBot(BaseChatBot):
         # TODO: study langchain docs on structured outputs
         # https://python.langchain.com/docs/how_to/structured_output/
         self._llm = LLM()
+        self._llm_structured = self._llm.with_structured_output(Person)
         self._chat_history = ChatHistory()
 
     @override
@@ -39,12 +40,18 @@ class ChatBot(BaseChatBot):
         self._chat_history.add_message(user_message(question))
         # call the LLM with all historic messages
         # TODO: this should return an instance of Person
-        response = self._llm.invoke(
+        response = self._llm_structured.invoke(
             self._chat_history.messages, config=self.get_config(ctx)
         )
         # extract the answer
         # TODO: you need to create a string based on the structured answer
-        answer = str(response.content)
+        # the output should be an instance of Person
+        if not isinstance(response, Person):
+            # unless an error had occurred
+            raise ValueError(f"Failed to generate structured output, got {response}")
+        # we can now rely on having a valid Person
+        answer = f"{response.name}, born in {response.year_of_birth}"
+
         # record answer in chat history
         self._chat_history.add_message(assistant_message(answer))
 
