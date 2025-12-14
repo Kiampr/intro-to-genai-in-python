@@ -1,9 +1,10 @@
 import requests
-import datetime
 from enum import Enum
+import datetime
 from zoneinfo import ZoneInfo
 from typing import override
 from langchain_core.tools import tool
+from langgraph.prebuilt import create_react_agent
 from chatbot.chatbot_base import BaseChatBot
 from chatbot.chat_context import ChatContext
 from chatbot.chat_history import ChatHistory, assistant_message, user_message
@@ -25,6 +26,7 @@ def convert_time(
 ) -> str:
     """Converts today's time from one time zone to another.
     time: 'HH:MM[:SS]' (no timezone, no 'Z')
+    Example: 10:00
     Returns ISO-8601 with offset, plus target time zone in brackets.
     """
     from_tz = ZoneInfo(from_time_zone.value)
@@ -59,9 +61,13 @@ class ChatBot(BaseChatBot):
     """Uses an LLM with tools"""
 
     def __init__(self):
-        # TODO: study langgraph.prebuilt.create_react_agent
-        # https://dev.to/chatgptnexus/2025011823-09-11-article-3a60
-        self._graph = LLM()
+        # vanilla language model
+        llm = LLM()
+        # list of tools at the model's disposal - they need to be decorated with @tool
+        tools = [convert_time, convert_currency]
+        # predefined tool calling agent in LangGraph
+        # it resolves tool calls in a loop until none are requested
+        self._graph = create_react_agent(model=llm, tools=tools)
         self._chat_history = ChatHistory()
 
     @override
@@ -79,13 +85,23 @@ class ChatBot(BaseChatBot):
         # record question in chat history
         self._chat_history.add_message(user_message(question))
         # call the LLM with all historic messages
-        # bonus: include ctx as a config argument to get tool call status updates
-        response = self._graph.invoke(
-            self._chat_history.messages, config=self.get_config(ctx)
-        )
+        # also pass ctx so that the agent can publish status updates on tool calls to the UI
+        # response = self._graph.invoke(
+        #     {"messages": self._chat_history.messages}, config=self.get_config(ctx)
+        # )
         # extract the answer
-        # TODO: this will be slightly different, see the response format for the LangGraph agent
-        answer = str(response.content)
+        # multiple messages may have been generated, the last one is the final response
+        #answer = str(response["messages"][-1].content)\
+        response = self._graph.invoke(
+            {"messages": self._chat_history.messages},
+            config=self.get_config(ctx),
+        )
+
+        if hasattr(response, "content"):
+            answer = response.content
+        else:
+            answer = response["messages"][-1].content
+
         # record answer in chat history
         self._chat_history.add_message(assistant_message(answer))
 
